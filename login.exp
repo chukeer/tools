@@ -1,0 +1,20 @@
+#!/usr/bin/expect  
+  
+set timeout 30  
+if { [llength $argv] < 3 } {
+    puts "Usage:"
+    puts "$argv0 user ip password port(optional)"
+    exit 1
+} elseif { [llength $argv] == 3 } {
+    set port 22
+} else {
+    set port [lindex $argv 3]
+}
+spawn ssh [lindex $argv 0]@[lindex $argv 1] -p $port
+expect {  
+        "(yes/no)?"  
+        {send "yes\n";exp_continue}  
+        "password:"  
+        {send "[lindex $argv 2]\n"}  
+}  
+interact
