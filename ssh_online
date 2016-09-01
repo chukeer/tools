@@ -25,9 +25,13 @@ proc usage { cmd } {
     puts "usage:"
     puts "    $cmd ip_index"
     puts "ip information:"
+    puts [format "%-6s %-16s %s" index ip msg]
+    puts "-----------------------------------"
     set i 0
     foreach ip_info $online_ip {
-        puts "$i $ip_info"
+        set ip [lindex $ip_info 0]
+        set msg [lindex $ip_info 1]
+        puts [format "%-6s %-16s %s" $i $ip $msg]
         incr i
     }
 
@@ -42,11 +46,7 @@ if {[lindex $argv 0]=="-h"} {
     exit 1
 }
 set ip_index [lindex $argv 0]
-if {$ip_index < 0} {
-    puts "ip_index:$ip_index error"
-    usage $argv0
-    exit 1
-} elseif { $ip_index >= [llength $online_ip] } {
+if {$ip_index < 0 || $ip_index >= [llength $online_ip]} {
     puts "ip_index:$ip_index error"
     usage $argv0
     exit 1
