@@ -1,0 +1,67 @@
+#!/usr/bin/expect
+set online_ip {
+    {58.67.200.176 root}
+    {58.67.200.177 root}
+    {210.14.141.201 root_double}
+    {116.211.100.82 root_dx}
+    {220.249.103.153 root_lt}
+    {116.211.100.83 dx_store}
+    {116.211.100.84 dx_store}
+    {116.211.100.85 dx_store}
+    {116.211.100.88 dx_store}
+    {116.211.100.89 dx_store}
+    {61.147.74.69 dx_store}
+    {61.147.74.70 dx_store}
+    {61.147.74.73 dx_store}
+    {218.11.176.11 lt_store}
+    {218.11.176.12 lt_store}
+    {218.11.176.13 lt_store}
+    {220.249.103.154 lt_store}
+    {220.249.103.155 lt_store}
+}
+
+proc usage { cmd } {
+    global online_ip
+    puts "usage:"
+    puts "    $cmd ip_index"
+    puts "ip information:"
+    set i 0
+    foreach ip_info $online_ip {
+        puts "$i $ip_info"
+        incr i
+    }
+
+}
+
+if {$argc < 1} {
+    usage $argv0
+    exit 1
+}
+if {[lindex $argv 0]=="-h"} {
+    usage $argv0
+    exit 1
+}
+set ip_index [lindex $argv 0]
+if {$ip_index < 0} {
+    puts "ip_index:$ip_index error"
+    usage $argv0
+    exit 1
+} elseif { $ip_index >= [llength $online_ip] } {
+    puts "ip_index:$ip_index error"
+    usage $argv0
+    exit 1
+}
+
+set ip_info [lindex $online_ip $ip_index]
+set ip [lindex $ip_info 0]
+set port 27100
+set user bt_user
+set passwd bitqiu_2016
+spawn ssh -p $port $user@$ip
+expect {
+    "(yes/no)?"
+    {send "yes\n";exp_continue}
+    "password:"
+    {send "$passwd\n"}
+}
+interact
