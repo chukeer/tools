@@ -1,0 +1,19 @@
+#!/usr/bin/expect  
+set timeout 30  
+if { [llength $argv] < 1 } {
+    puts "Usage:"
+    puts "    $argv0 num"
+    puts "    for example: $argv0 26"
+    puts "    will ssh to 192.168.3.26"
+    exit 1
+}
+set port 21000
+set passwd 4TiOq6yXHncIy6F
+spawn ssh root@192.168.3.[lindex $argv 0] -p $port
+expect {  
+        "(yes/no)?"  
+        {send "yes\n";exp_continue}  
+        "password:"  
+        {send "$passwd\n"}  
+}  
+interact
