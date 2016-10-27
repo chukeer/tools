@@ -1,23 +1,23 @@
 #!/usr/bin/expect
 set online_ip {
-    {58.67.200.176 root}
-    {58.67.200.177 root}
-    {210.14.141.201 root_double}
-    {116.211.100.82 root_dx}
-    {220.249.103.153 root_lt}
-    {116.211.100.83 dx_store}
-    {116.211.100.84 dx_store}
-    {116.211.100.85 dx_store}
-    {116.211.100.88 dx_store}
-    {116.211.100.89 dx_store}
-    {61.147.74.69 dx_store}
-    {61.147.74.70 dx_store}
-    {61.147.74.73 dx_store}
-    {218.11.176.11 lt_store}
-    {218.11.176.12 lt_store}
-    {218.11.176.13 lt_store}
-    {220.249.103.154 lt_store}
-    {220.249.103.155 lt_store}
+    {58.67.200.176 GZ_MASTER1}
+    {58.67.200.177 GZ_MASTER2}
+    {210.14.141.201 BJ_SLAVE}
+    {116.211.100.82 WH_JXDX_ROOT}
+    {220.249.103.153 WH_LXLT_ROOT}
+    {112.82.242.38 JS_CZLT_STORE}
+    {112.82.242.39 JS_CZLT_STORE}
+    {116.211.100.83 WH_JXDX_STORE}
+    {116.211.100.84 WH_JXDX_STORE}
+    {116.211.100.85 WH_JXDX_STORE}
+    {116.211.100.88 WH_JXDX_STORE}
+    {116.211.100.89 WH_JXDX_STORE}
+    {220.249.103.133 WH_LXLT_STORE}
+    {220.249.103.154 WH_LXLT_STORE}
+    {220.249.103.155 WH_LXLT_STORE}
+    {61.160.196.230 JS_CZDX_STORE}
+    {61.160.196.231 JS_CZDX_STORE}
+    {61.160.196.232 JS_CZDX_STORE}
 }
 
 proc usage { cmd } {
